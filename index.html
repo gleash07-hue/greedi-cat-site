@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Greedi the Cat 🐱</title>
+  <style>
+    :root{
+      --bg:#0b0e14; --card:#121826; --accent:#ffcc66; --pink:#ff7a7a; --text:#e6e9f0;
+    }
+    *{box-sizing:border-box;font-family:system-ui,-apple-system,Segoe UI,Roboto}
+    body{margin:0;background:radial-gradient(1000px 500px at 20% -10%,#2a1f12,transparent),var(--bg);color:var(--text)}
+    header{text-align:center;padding:40px 20px}
+    h1{font-size:clamp(36px,6vw,72px);margin:0}
+    .tag{opacity:.8;margin-top:8px}
+    main{max-width:1100px;margin:0 auto;padding:20px;display:grid;gap:20px}
+    .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px}
+    .card{background:linear-gradient(180deg,#141a2b,#0f1424);border:1px solid #1e2744;border-radius:20px;padding:20px;box-shadow:0 10px 30px rgba(0,0,0,.25)}
+    .stat{font-size:28px;font-weight:800}
+    button{background:linear-gradient(135deg,var(--accent),var(--pink));border:none;color:#1a1208;padding:14px 18px;border-radius:16px;font-weight:800;cursor:pointer}
+    button.secondary{background:#1b2336;color:var(--text);border:1px solid #2a3555}
+    .cat{font-size:120px;cursor:pointer;user-select:none;transition:transform .08s ease}
+    .cat:active{transform:scale(0.95)}
+    footer{text-align:center;opacity:.7;padding:30px}
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Greedi the Cat 🐱</h1>
+    <div class="tag">Pet Greedi. Help homeless cats. Pure meme energy.</div>
+  </header>
+
+  <main>
+    <section class="grid">
+      <div class="card" style="text-align:center">
+        <h3>Pet Greedi</h3>
+        <div class="cat" id="cat">🐱</div>
+        <div class="stat" id="pets">0 pets</div>
+        <p class="tag">Every pet increases the donation meter.</p>
+      </div>
+
+      <div class="card">
+        <h3>Donation Meter</h3>
+        <div class="stat" id="donation">$0.00</div>
+        <p class="tag">Simulated donations (wire real wallet later)</p>
+        <button id="donateBtn">Donate $1 🐾</button>
+      </div>
+
+      <div class="card">
+        <h3>$GREEDI Token</h3>
+        <ul class="tag">
+          <li>Supply: 1,000,000,000</li>
+          <li>Taxes: 0 / 0</li>
+          <li>Chain: SOL (edit if needed)</li>
+        </ul>
+        <button class="secondary" id="copyCa">Copy Contract</button>
+      </div>
+    </section>
+
+    <section class="card">
+      <h3>What This Is</h3>
+      <p class="tag">
+        Greedi is a meme coin with a heart. Interaction on this site represents
+        support for homeless cats. When live, donations can be routed to
+        transparent charity wallets.
+      </p>
+    </section>
+  </main>
+
+  <footer>
+    <div>Twitter • Telegram • Charity Wallet</div>
+    <div class="tag">Demo site — no real donations yet.</div>
+  </footer>
+
+  <script>
+    let pets = 0;
+    let donated = 0;
+
+    const petsEl = document.getElementById('pets');
+    const donationEl = document.getElementById('donation');
+
+    document.getElementById('cat').onclick = () => {
+      pets++;
+      donated += 0.05; // 5 cents per pet (demo logic)
+      petsEl.textContent = pets + ' pets';
+      donationEl.textContent = '$' + donated.toFixed(2);
+    };
+
+    document.getElementById('donateBtn').onclick = () => {
+      donated += 1;
+      donationEl.textContent = '$' + donated.toFixed(2);
+    };
+
+    document.getElementById('copyCa').onclick = async () => {
+      await navigator.clipboard.writeText('GREEDI_CONTRACT_ADDRESS');
+      alert('Contract copied (demo)');
+    };
+  </script>
+</body>
+</html>
